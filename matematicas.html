@@ -16,14 +16,15 @@
 				<section>
                     <h1>Matemáticas y python</h1>
                     <h2>#pyDayTF</h2>
+                    <h3>Alberto Morales</h3>
 				</section>
 
 
 				<section>
                     <section>
                         <h2>Basado en...</h2>
-                        <img style="height: 300px" style="float: left" data-src="matematicas/Doing-Math-With-Python.jpg">
-                        <div>245 páginas en 40 minutos</div>
+                        <a title="No starch press"href="https://www.nostarch.com/doingmathwithpython"><img style="height: 300px" style="float: left" data-src="matematicas/Doing-Math-With-Python.jpg"></a>
+                        <div class="fragment">245 páginas en 40 minutos</div>
                         <div class="fragment" >6.125 páginas por minuto</div>
                         <div class="fragment" >1 páginas cada 9.795918367346939 segundos</div>
                         <div class="fragment" >Y de matemáticas...</div>
@@ -31,12 +32,22 @@
                     <section>
                         <img height="600px" data-src="matematicas/16_tons.gif">
                     </section>
+                    <section>
+                        <h2>Índice</h2>
+                        <ul>
+                            <li><a href="#/2">Matemáticas básicas (python estandar)</a></li>
+                            <li><a href="#/3">Matplotlib</a></li>
+                            <li><a href="#/4">Sympy</a></li>
+                            <li><a href="#/5">Scipy</a></li>
+                            <li><a href="#/6">Numpy</a></li>
+                        </ul>
+                    </section>
 				</section>
 
 
 				<section>
                     <section>
-                        <h2>Aritmética básica</h2>
+                        <h2>Matemáticas básicas</h2>
                         <pre><code class="hlpython" data-trim>
     >>> 2+3, 2-3, 2*3, 2/3      # operaciones basicas
     (5, -1, 6, 0.6666666666666666)
@@ -53,7 +64,7 @@
                     <section>
                         <h2>Trigonometría</h2>
                         <pre><code class="hlpython" data-trim>
-    >>> from math import *    # importamos toda la librería, no PEP-8
+    >>> from math import *    # importamos todo el módulo, no PEP-8
     >>> sin(90)               # esto esta mal, pues es en radianes
     0.8939966636005579
     >>> sin(pi/2)             # esto esta bien, en radianes
@@ -376,6 +387,94 @@ y**4 - 2*y**3 - 3*y**2 + 4*y + 4
 >>> Integral(sin(x)**2, x).doit()
 x/2 - sin(x)*cos(x)/2
                         </code></pre>
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h2>Scipy</h2>
+                        <p>Librería dedicada a aglutinar librerías científicas</p>
+                        <div class="fragment"><img data-src="matematicas/doc.gif"></div>
+                        <p><a href="http://scipy.org/">http://scipy.org/</a></p>
+                        <p>Matplotlib y sympy están incluidas en ella.</p>
+                        <p>Muy útil el <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/index.html">Tutorial</a> porque enlaza a todos los módulos de que dispone.</li>
+                    </section>
+                    <section>
+                        <h2>Scipy (módulos)</h2>
+                        <p>Si no sabes de lo que estoy hablando, es que no lo necesitas</p>
+                        <ul>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html">Integración</a> (simpson, cuadratura gausiana, ...)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">Optimización</a> (gradiente conjugado, mínimos cuadrados, etc)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html">Interpolación</a> (spline)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html">Transformadas de Fourier</a> (FFT, la del coseno DCT, y del seno DST)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/signal.html">Procesamiento de señal</a> (Filtros FIR, IIR, polos, ceros, etc)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/linalg.html">Algebra lineal</a> (inversa, determinante, autovalores, LU, etc)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/spatial.html">Datos espaciales</a> (triangulación, delaunay, voronoi)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/stats.html">Estadística</a> (distribuciones de probabilidad, muestreo)</li>
+                            <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">Procesamiento de imágenes multidimensional</a> (filtrado, interpolado, morfologia, segmentado)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Sympy (symbol)</h2>
+                        <p>La variable, la incógnita, el core</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import Symbol
+>>> x = Symbol('x')
+>>> x + x + 1
+2*x + 1
+>>> type(2*x)
+&lt;class 'sympy.core.mul.Mul'&gt;
+>>> type(2*x+1)
+&lt;class 'sympy.core.add.Add'&gt;
+                        </code></pre>
+                        <p>Es decir, las incognitas y operaciones algebraicas pasan a ser clases de sympy.</p>
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h2>Numpy</h2>
+                        <p>La librería más importante para calculo vectorial/matricial</p>
+                        <div class="fragment"><img data-src="matematicas/neo.gif"></div>
+                        <p><a href="http://www.numpy.org/">http://www.numpy.org/</a></p>
+                        <p>Muy útil el <a href="https://docs.scipy.org/doc/numpy/reference/routines.html">Índice por categorías</a> porque enlaza a todos los módulos de que dispone.</li>
+                    </section>
+                    <section>
+                        <h2>Numpy (módulos)</h2>
+                        <p>Todo se trabaja con vectores y matrices</p>
+                        <pre><code class="hlpython" data-trim>
+>>> import numpy as np
+>>> a = np.arange(10).reshape(2, 3)  # vector de 6 numeros consecutivos convertido a matriz de 2x3
+>>> b = np.array([(1.5,2,3), (4,5,6)])  # matriz 2 filas y 3 columnas definida a mano
+>>> c = np.sin(b)                    # calcular el seno() de todos los elementos
+>>> d = c > 0.5                      # matriz booleana que indica si los elementos son > 0.5
+>>> e = c * d                        # producto elemento a elemento (valores * booleano: mascara)
+>>> import matplotlib.pyplot as plt
+>>> plt.imshow(c, cmap='gray')
+>>> plt.show()                       # mostrar una matriz como una imagen en escala de grises
+
+                        </code></pre>
+                        <img style="height: 300px" data-src="matematicas/numpy_imshow.png">
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h2>Pero tanta caña en 40 minutos</h2>
+                        <img data-src="matematicas/rick.gif">
+                        <h3>no puede ser bueno, así que paramos.</h3>
+                    </section>
+                    <section>
+                        <h3>Gracias por resistir a este taller!!</h3>
+                        <img data-src="matematicas/picard.gif">
+                    </section>
+                    <section>
+                        <h3>Matemáticas y python</h3>
+                        <ul>
+                            <li><a href="#/2">Matemáticas básicas (python estandar)</a></li>
+                            <li><a href="#/3">Matplotlib</a></li>
+                            <li><a href="#/4">Sympy</a></li>
+                            <li><a href="#/5">Scipy</a></li>
+                            <li><a href="#/6">Numpy</a></li>
+                        </ul>
+                        <h2>¿Preguntas?</h2>
                     </section>
                 </section>
 			</div>
