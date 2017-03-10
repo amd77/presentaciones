@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>Matemáticas - pyDayTF 2017</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="lib/css/github.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <h1>Matemáticas y python</h1>
+                    <h2>#pyDayTF</h2>
+				</section>
+				<section>
+                    <section>
+                        <h2>Basado en...</h2>
+                        <img style="height: 300px" style="float: left" data-src="matematicas/Doing-Math-With-Python.jpg">
+                        <div>245 páginas en 40 minutos</div>
+                        <div class="fragment" >6.125 páginas por minuto</div>
+                        <div class="fragment" >1 páginas cada 9.795918367346939 segundos</div>
+                        <div class="fragment" >Y de matemáticas...</div>
+                    </section>
+                    <section>
+                        <img height="600px" data-src="matematicas/16_tons.gif">
+                    </section>
+				</section>
+				<section>
+                    <section>
+                        <h2>Aritmética básica</h2>
+                        <pre><code class="hlpython" data-trim>
+    >>> 2+3, 2-3, 2*3, 2/3      # operaciones basicas
+    (5, -1, 6, 0.6666666666666666)
+    >>> 4/2, 5/2, 6/2           # división decimal
+    (2.0, 2.5, 3.0)
+    >>> 4//2, 5//2, 6//2        # división de enteros
+    (2, 2, 3)
+    >>> 9 % 3, 10 % 3, 11 % 3   # resto de la división (módulo)
+    (0, 1, 2)
+    >>> 5**2, 2**10, 144**0.5   # potencias y raices
+    (25, 1024, 12.0)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Trigonometría</h2>
+                        <pre><code class="hlpython" data-trim>
+    >>> from math import *    # importamos toda la librería, no PEP-8
+    >>> sin(90)               # esto esta mal, pues es en radianes
+    0.8939966636005579
+    >>> sin(pi/2)             # esto esta bien, en radianes
+    1.0
+    >>> sin(radians(90))      # convertir de grados a radianes
+    1.0
+    >>> cos(radians(90)), tan(radians(90))  # ~0 e ~infinito
+    (6.123233995736766e-17    , 1.633123935319537e+16)
+    >>> atan(1)               # para que x, ¿tan(x) da 1? 0.78 radianes
+    0.7853981633974483
+    >>> degrees(atan(1))      # o convertido a grados
+    45.0
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Fracciones</h2>
+                        <pre><code class="hlpython" data-trim>
+
+    >>> from fractions import Fraction
+    >>> Fraction(5, 2)
+    Fraction(5, 2)
+    >>> Fraction(5, 2)+Fraction(3, 5)
+    Fraction(31, 10)
+    >>> Fraction(5, 2) / Fraction(3, 5)
+    Fraction(25, 6)
+    >>> Fraction(5, 2) / Fraction(3, 5) - Fraction(1, 6)
+    Fraction(4, 1)
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Números complejos</h2>
+                        <pre><code class="hlpython" data-trim>
+
+    >>> 2 + 3j + 5 + 6j                   # la 'j' es la 'i' imaginaria
+    (7+9j)
+
+    >>> (2 + 3j) * (5 + 6j)
+    (-8+27j)
+
+    >>> (2 + 3j) / (5 + 6j)
+    (0.4590163934426229+0.04918032786885245j)
+
+    >>> z = 2 + 3j
+
+    >>> type(z), z.real, z.imag, abs(z)   # clase, parte real, imaginaria y módulo
+    (&lt;class 'complex'&gt;, 2.0, 3.0, 3.605551275463989)
+
+                        </code></pre>
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h2>Matplotlib</h2>
+                        <ul>
+                            <li>Librería dedicada a hacer gráficas (plots)</li>
+                            <li><a href="http://matplotlib.org/">http://matplotlib.org/</a></li>
+                            <li>Muy útil la <a href="http://matplotlib.org/gallery.html">Galería</a> porque trae muchos ejemplos complejos, cada uno con su código fuente</li>
+                            <li>Permite guardar en formato imagen</li>
+                            <li>pylab: Inspirada en la sintaxis de MATLAB/Octave</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Matplotlib (simple Y)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, show
+>>> plot([6, 2, 5, 4, 1])  # datos de la Y
+[&lt;matplotlib.lines.Line2D object at 0x7f3b85528a10&gt;]
+>>> show()  # y cerrar la ventana para continuar
+                        </code></pre>
+                        <img style="height: 400px" data-src="matematicas/pylab_simple.png">
+                    </section>
+
+                    <section>
+                        <h2>Matplotlib (cuidado)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, show
+>>> plot([4, 3, 2, 2, 5])
+[&lt;matplotlib.lines.Line2D object at 0x7f3b85528150&gt;]
+>>> plot([6, 2, 5, 4, 1])
+[&lt;matplotlib.lines.Line2D object at 0x7f3b855283d0&gt;]
+>>> show()  # muestra dos, cerrarla
+>>> show()  # no muestra ninguna, cerrarla
+                        </code></pre>
+                        <img style="height: 400px" data-src="matematicas/pylab_cuidado.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (simple X Y)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, show
+>>> plot([1, 2, 3, 4, 5], [6, 2, 5, 4, 1])  # datos de la X y de la Y
+[&lt;matplotlib.lines.Line2D object at 0x7f3b8551b890&gt;]
+>>> show()
+                        </code></pre>
+                        <img style="height: 400px" data-src="matematicas/pylab_simple.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (markers)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, show
+>>> plot([1, 2, 3, 4, 5], [6, 2, 5, 4, 1], marker='o')  # 'o', '*', 'x', '+'
+[&lt;matplotlib.lines.Line2D object at 0x7f3b8551b890&gt;]
+>>> show()
+                        </code></pre>
+                        <img style="height: 400px" data-src="matematicas/pylab_markers.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (ranges)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, show
+>>> plot(range(2012, 2017), [6, 2, 5, 4, 1], 'ro-')
+[&lt;matplotlib.lines.Line2D object at 0x7f3b8551b890&gt;]
+>>> show()
+                        </code></pre>
+                        <img style="height: 400px" data-src="matematicas/pylab_range.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (axis)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, axis, show
+>>> plot(range(2012, 2017), [6, 2, 5, 4, 1], 'gx--')
+[&lt;matplotlib.lines.Line2D object at 0x7f3b8551b890&gt;]
+>>> axis()
+(2012.0, 2016.0, 1.0, 6.0)
+>>> axis(xmin=2010, ymin=0)
+(2010, 2016.0, 0, 6.0)
+>>> show()
+                        </code></pre>
+                        <img style="height: 300px" data-src="matematicas/pylab_axis.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (guardar)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, savefig  # ojo!
+>>> plot(range(2012, 2017), [6, 2, 5, 4, 1])
+[&lt;matplotlib.lines.Line2D object at 0x7f3b8551b890&gt;]
+>>> savefig("salida.png")
+                        </code></pre>
+                        <img style="height: 300px" data-src="matematicas/pylab_guardar.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (subplot)</h2>
+                        <pre><code class="hlpython" data-trim>
+>>> from pylab import plot, subplot, show
+>>> subplot(211)  # En una rejilla 2 filas 1 columna, la posicion 1
+>>> plot(range(2012, 2017), [6, 2, 5, 4, 1], 'ro--')
+>>> subplot(212)  # En una rejilla 2 filas 1 columna, la posicion 2
+>>> plot(range(2012, 2017), [4, 3, 2, 2, 5], 'gx-')
+>>> show()
+                        </code></pre>
+                        <img style="height: 300px" data-src="matematicas/pylab_subplot.png">
+                    </section>
+                    <section>
+                        <h2>Matplotlib (pyplot)</h2>
+                        <p>La forma aconsejada de usar esta librería, sin las limitaciones de MATLAB</p>
+                        <pre><code class="hlpython" data-trim>
+import matplotlib.pyplot as plt
+plt.figure(1)
+plt.subplot(211)
+plt.plot(range(2012, 2017), [6, 2, 5, 4, 1], 'ro--')
+plt.axis([2010, 2020, 0, 10])
+plt.xlabel(u'año')
+plt.ylabel('medias de dia')
+plt.subplot(212)
+plt.plot(range(2012, 2017), [4, 3, 2, 2, 5], 'gx-')
+plt.axis([2010, 2020, 0, 10])
+plt.xlabel(u'año')
+plt.ylabel('medias nocturnas')
+plt.show()
+                        </code></pre>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                width: "100%",
+                height: "100%",
+                margin: 0,
+                transition: "fade",
+                center: false,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
