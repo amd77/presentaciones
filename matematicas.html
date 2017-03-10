@@ -11,10 +11,14 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
+
 				<section>
                     <h1>Matemáticas y python</h1>
                     <h2>#pyDayTF</h2>
 				</section>
+
+
 				<section>
                     <section>
                         <h2>Basado en...</h2>
@@ -28,6 +32,8 @@
                         <img height="600px" data-src="matematicas/16_tons.gif">
                     </section>
 				</section>
+
+
 				<section>
                     <section>
                         <h2>Aritmética básica</h2>
@@ -100,16 +106,16 @@
                         </code></pre>
                     </section>
                 </section>
+
+
 				<section>
                     <section>
                         <h2>Matplotlib</h2>
-                        <ul>
-                            <li>Librería dedicada a hacer gráficas (plots)</li>
-                            <li><a href="http://matplotlib.org/">http://matplotlib.org/</a></li>
-                            <li>Muy útil la <a href="http://matplotlib.org/gallery.html">Galería</a> porque trae muchos ejemplos complejos, cada uno con su código fuente</li>
-                            <li>Permite guardar en formato imagen</li>
-                            <li>pylab: Inspirada en la sintaxis de MATLAB/Octave</li>
-                        </ul>
+                        <p>Librería dedicada a hacer gráficas</p>
+                        <div class="fragment"><img data-src="matematicas/circle.gif"></div>
+                        <p><a href="http://matplotlib.org/">http://matplotlib.org/</a></p>
+                        <p>Muy útil la <a href="http://matplotlib.org/gallery.html">Galería</a> porque trae muchos ejemplos complejos, cada uno con su código fuente</p>
+                        <p>pylab: Inspirada en la sintaxis de MATLAB/Octave</p>
                     </section>
 
                     <section>
@@ -219,6 +225,156 @@ plt.axis([2010, 2020, 0, 10])
 plt.xlabel(u'año')
 plt.ylabel('medias nocturnas')
 plt.show()
+                        </code></pre>
+                    </section>
+                </section>
+
+
+				<section>
+                    <section>
+                        <h2>Sympy</h2>
+                        <p>Librería dedicada a álgebra (symbolic math)</p>
+                        <div class="fragment"><img data-src="matematicas/runners.gif"></div>
+                        <p><a href="http://www.sympy.org/">http://www.sympy.org/</a></p>
+                        <p>Muy útil la <a href="http://docs.sympy.org/latest/index.html">Ayuda</a> porque la forman muchos módulos para tareas diferentes</p>
+                    </section>
+                    <section>
+                        <h2>Sympy (symbol)</h2>
+                        <p>La variable, la incógnita, el core</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import Symbol
+>>> x = Symbol('x')
+>>> x + x + 1
+2*x + 1
+>>> type(2*x)
+&lt;class 'sympy.core.mul.Mul'&gt;
+>>> type(2*x+1)
+&lt;class 'sympy.core.add.Add'&gt;
+                        </code></pre>
+                        <p>Es decir, las incognitas y operaciones algebraicas pasan a ser clases de sympy.</p>
+                    </section>
+                    <section>
+                        <h2>Sympy (symbols)</h2>
+                        <p>Un atajo para definir más incógnitas de una vez</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import Symbol, symbols
+>>> x = Symbol('x')
+>>> y = Symbol('y')
+>>> z = Symbol('z')
+>>> # equivalente a ...
+>>> x, y, z = symbols('x,y,z')
+                        </code></pre>
+                        <p>Es decir, las incognitas y operaciones algebraicas pasan a ser clases de sympy.</p>
+                    </section>
+                    <section>
+                        <h2>Sympy (sin hacer nada)</h2>
+                        <p>Hay operaciones básicas que sympy resuelve sin que se lo digas</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import Symbol, symbols
+>>> x, y = symbols("x,y")
+>>> x*y+x*y
+2*x*y
+>>> x*(x+x)
+2*x**2
+>>> x*y/y
+x
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Sympy (expandir y factorizar)</h2>
+                        <p>Para desarrollar y simplificar expresiones</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import symbols, factor, expand
+>>> x, y = symbols("x,y")
+>>> factor(x**2 - y**2)
+(x - y)*(x + y)
+>>> factor(x**3 + 3*x**2*y + 3*x*y**2 + y**3)
+(x + y)**3
+>>> expand((x - y)*(x + y))
+x**2 - y**2
+>>> expand((x - 1)*(x + 1)*(2*x+3))
+2*x**3 + 3*x**2 - 2*x - 3
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Sympy (evaluar)</h2>
+                        <p>En una f(x,y), evaluamos para un punto (x, y) concreto.</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import symbols
+>>> x, y = symbols("x,y")
+>>> f = x*x + x*y + x*y + y*y
+>>> f.subs({x: 1, y: 2})  # evaluar en un punto f(1, 2)
+9
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Sympy (cambio de variable)</h2>
+                        <p>Sustituimos en una f(x,y) la x o la y por otra ecuación</p>
+                        <pre><code class="hlpython" data-trim>
+>>> from sympy import symbols, simplify
+>>> x, y = symbols("x,y")
+>>> f = x*x + x*y + x*y + y*y
+>>> f.subs({x: 1-y})      # cambio de variable x -&gt; 1-y
+y**2 + 2*y*(-y + 1) + (-y + 1)**2
+>>> simplify(_)
+1
+>>> f.subs({x: 2-y**2})   # cambio de variable x -&gt; 2-y**2
+y**2 + 2*y*(-y**2 + 2) + (-y**2 + 2)**2
+>>> simplify(_)
+y**2 - 2*y*(y**2 - 2) + (y**2 - 2)**2
+>>> expand(_)
+y**4 - 2*y**3 - 3*y**2 + 4*y + 4
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Sympy (despejando)</h2>
+                        <pre><code class="hlpython" data-trim>
+&gt;&gt;&gt; from sympy import symbols, solve, pprint
+>>> x, a, b, c = symbols("x,a,b,c")
+>>> f = x**2 + 5*x + 4      # f(x) = 0
+>>> solve(f, dict=True)     # despeja (resuelve) x
+[{x: -4}, {x: -1}]
+>>> f = a*x**2 + b*x + c    # f(x, a, b, c) = 0
+>>> pprint(solve(f, x, dict=True))  # despeja x
+⎡⎧           _____________⎫  ⎧    ⎛       _____________⎞ ⎫⎤
+⎢⎪          ╱           2 ⎪  ⎪    ⎜      ╱           2 ⎟ ⎪⎥
+⎢⎨   -b + ╲╱  -4⋅a⋅c + b  ⎬  ⎨   -⎝b + ╲╱  -4⋅a⋅c + b  ⎠ ⎬⎥
+⎢⎪x: ─────────────────────⎪, ⎪x: ────────────────────────⎪⎥
+⎣⎩            2⋅a         ⎭  ⎩             2⋅a           ⎭⎦
+>>> pprint(solve(f, a, dict=True))  # despeja a
+⎡⎧   -(b⋅x + c) ⎫⎤
+⎢⎪a: ───────────⎪⎥
+⎢⎨         2    ⎬⎥
+⎢⎪        x     ⎪⎥
+⎣⎩              ⎭⎦
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Sympy (representando)</h2>
+                        <pre><code class="hlpython" data-trim>
+&gt;&gt;&gt; from sympy.plotting import plot
+&gt;&gt;&gt; from sympy import Symbol
+>>> plot(2*x**2 + 3*x)
+>>> plot(2*x**2 + 3*x, (x, -5, 5))
+                        </code></pre>
+                        <img style="height: 300px" data-src="matematicas/sympy_plot.png">
+                    </section>
+
+                    <section>
+                        <h2>Sympy (derivadas e integrales)</h2>
+                        <pre><code class="hlpython" data-trim>
+&gt;&gt;&gt; from sympy import Symbol, Derivative, Integral
+>>> Derivative(2*x**2+3*x+1, x).doit()
+4*x + 3
+>>> Derivative(2*sin(x)*x**2, x).doit()
+2*x**2*cos(x) + 4*x*sin(x)
+>>> Integral(4*x + 3, x).doit()
+2*x**2 + 3*x
+>>> Integral(sin(x)**2, x).doit()
+x/2 - sin(x)*cos(x)/2
                         </code></pre>
                     </section>
                 </section>
