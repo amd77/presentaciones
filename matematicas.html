@@ -413,21 +413,6 @@ x/2 - sin(x)*cos(x)/2
                             <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">Procesamiento de imágenes multidimensional</a> (filtrado, interpolado, morfologia, segmentado)</li>
                         </ul>
                     </section>
-                    <section>
-                        <h2>Sympy (symbol)</h2>
-                        <p>La variable, la incógnita, el core</p>
-                        <pre><code class="hlpython" data-trim>
->>> from sympy import Symbol
->>> x = Symbol('x')
->>> x + x + 1
-2*x + 1
->>> type(2*x)
-&lt;class 'sympy.core.mul.Mul'&gt;
->>> type(2*x+1)
-&lt;class 'sympy.core.add.Add'&gt;
-                        </code></pre>
-                        <p>Es decir, las incognitas y operaciones algebraicas pasan a ser clases de sympy.</p>
-                    </section>
                 </section>
 				<section>
                     <section>
@@ -442,7 +427,7 @@ x/2 - sin(x)*cos(x)/2
                         <p>Todo se trabaja con vectores y matrices</p>
                         <pre><code class="hlpython" data-trim>
 >>> import numpy as np
->>> a = np.arange(10).reshape(2, 3)  # vector de 6 numeros consecutivos convertido a matriz de 2x3
+>>> a = np.arange(6).reshape(2, 3)   # vector de 6 numeros consecutivos convertido a matriz de 2x3
 >>> b = np.array([(1.5,2,3), (4,5,6)])  # matriz 2 filas y 3 columnas definida a mano
 >>> c = np.sin(b)                    # calcular el seno() de todos los elementos
 >>> d = c > 0.5                      # matriz booleana que indica si los elementos son > 0.5
