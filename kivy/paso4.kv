@@ -1,0 +1,54 @@
+# paso4.kv
+<ButtonsGrid>:
+    cols: 3
+    rows: 3
+    Button:
+        id: btn00
+        text: '0,0'
+        disabled: True
+    Button:
+        id: btn_up
+        text: 'Adelante'
+        on_press: root.forward(btn_up)
+    Button:
+        id: btn02
+        text: '0,2'
+        disabled: True
+    Button:
+        id:btn_left
+        text: 'Izquierda'
+        on_press: root.left(btn_left)
+    Button:
+        id: btn11
+        text: '1,1'
+        disabled: True
+    Button:
+        id:btn_right
+        text: 'Derecha'
+        on_press: root.right(btn_right)
+    Button:
+        id: btn20
+        text: '2,0'
+        disabled: True
+    Button:
+        id:btn_down
+        text: 'Atrás'
+        on_press: root.back(btn_down)
+    Button:
+        id: btn22
+        text: '2,2'
+        disabled: True
+
+<ContainerBox>:
+    orientation: 'vertical'
+    Video:
+        size_hint: [1, 1.5]
+        source: 'https://www.w3schools.com/html/mov_bbb.mp4'
+        state: "play"
+        volumen: 1
+        on_loaded: root.parent.video_loaded()
+    ButtonsGrid:
+    Label:
+        size_hint: [1, 0.2]
+        text: 'Aquí aparecerá el estado de las peticiones'
+        id: status_bar

@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>Interfaces - pyDayTF 2017</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="lib/css/github.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+                    <h1>Interfaces:</h1>
+                    <h1>Raspberry Pi & Kivy</h1>
+                    <h2>#pyDayTF</h2>
+                    <h3>Alberto Morales</h3>
+				</section>
+
+				<section>
+                    <section>
+                        <h3>Raspberry Pi</h3>
+                        <ul>
+                            <li><a href="#/1/1">¿Qué es?</a></li>
+                            <li><a href="#/1/2">Especificaciones</a></li>
+                            <li><a href="#/1/3">GPIO</a></li>
+                            <li><a href="#/1/4">RPi.GPIO</a></li>
+                            <li><a href="#/1/5">astro-pi</a></li>
+                            <li><a href="#/1/6">pi-top</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - ¿Que es?</h3>
+                        <p>Comenzó a diseñarse en 2006 en Computer Lab de la Universidad de Cambridge</p>
+                        <p>Se lanza en 2012 a través de la <a href="http://www.raspberrypi.org/">Fundación Raspberry Pi</a></p>
+                        <p>Modelos:</p>
+                        <ul>
+                            <li>A: Tamaño estandar, sin ethernet.</li>
+                            <li>B: Tamaño estandar, con ethernet.</li>
+                            <li>Compute module: dimensiones especiales.</li>
+                            <li>Zero: más pequeña y menos conectores</li>
+                        </ul>
+                        <p>Sistema operativo oficial <a href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian</a> (basado en Debian GNU/Linux)</p>
+                        <p>Lenguaje oficial Python</p>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - Especificaciones</h3>
+                        <p>Para la Raspberry Pi 3B (Febrero 2016, 35 USD)</p>
+                        <ul>
+                            <li>SOC (system on a chip): Broadcom BCM2837</li>
+                            <li>CPU: 1.2 GHz 64-bit quad-core ARM Cortex-A53</li>
+                            <li>GPU: Broadcom VideoCore IV @ 250 MHz (1080p60)</li>
+                            <li>RAM: 1 GB compartida con GPU</li>
+                            <li>USB: 4 puertos 2.0</li>
+                            <li>Red: 10/100 ethernet, wifi 802.11n y bluetooth 4.1</li>
+                            <li>Salidas: Audio analógico estéreo, HDMI, video composite, LCD DSI</li>
+                            <li>GPIO: 17 pines y puerto para cámara</li>
+                            <li>Consumo: 4W (5V 800mA)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - GPIO</h3>
+                        <p>Este es el diagrama del patillaje los puertos de E/S de proposito general GPIO</p>
+                        <a href="https://pihw.wordpress.com/2013/01/30/sometimes-it-can-be-simple/"><img style="height: 400px" data-src="interfaces/raspberry_gpio.png"></a>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - RPi.GPIO</h3>
+                        <p>Este trozo de código python hace un bucle para comprobar si se están pulsando los botones conectados a los pines 23 y 24</p>
+                        <pre><code class="hlpython" data-trim>
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(23, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+GPIO.setup(24, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+while True:
+    if (GPIO.input(23) == 1):
+        print(“Button 1 pressed”)
+    if (GPIO.input(24) == 0):
+        print(“Button 2 pressed”)
+GPIO.cleanup()
+                        </code></pre>
+                        <p class="small"><a href="http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/">fuente</a></p>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - astro-pi</h3>
+                        <p><a href="https://astro-pi.org/about/hardware/sense-hat/">Sense HAT</a>+<a href="https://astro-pi.org/about/hardware/flight-case/">Flight Case</a> para lanzar una Raspberry Pi al espacio.</p>
+                        <p>Proyecto de la Agencia Espacial Británica de finales del 2014 <a href="https://astro-pi.org/">https://astro-pi.org/</a></p>
+                        <p>Competición lanzada en colegios de UK para programarla. <a href="https://github.com/astro-pi">En python</a>.</p>
+                        <p>El premio: <a href="https://astro-pi.org/updates/primary-school-winners-announced/">ejecutar el código en la Estacion Espacial Internacional ISS</a>.</p>
+                        <img style="height: 300px" data-src="interfaces/astropi.jpg">
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi - pi-top</h3>
+                        <p>Portatil DIY basado en Raspberry Pi</p>
+                        <p>Crowdfounding de finales del 2014 en <a href="https://www.indiegogo.com/projects/pi-top-a-raspberry-pi-laptop-you-build-yourself#/">indiegogo</a> (217%)</p>
+                        <img style="height: 400px" data-src="interfaces/pi-top.png">
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h3>Kivy</h3>
+                        <ul>
+                            <li><a href="#/2/1">¿Qué es?</a></li>
+                            <li><a href="#/2/2">Primer paso</a></li>
+                            <li><a href="#/2/3">Segundo paso</a></li>
+                            <li><a href="#/2/4">Tercer paso</a></li>
+                            <li><a href="#/2/5">Cuarto paso</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Kivy - ¿Qué es?</h3>
+                        <p><a href="http://kivy.org/">http://kivy.org/</a></p>
+                        <p>Es un framework en python para elaborar aplicaciones multitouch para moviles</p>
+                        <p>Las aplicaciones elaboradas funcionan, sin cambiar el código fuente, en:</p>
+                        <p>Android | IOS | Linux | OSX | Windows</p>
+                        <img style="height: 200px" data-src="interfaces/kivy.png">
+                    </section>
+                    <section>
+                        <h3>Kivy - Primer paso</h3>
+                        <p>Esta es la aplicación más básica. Una etiqueta que ocupa toda la ventana.</p>
+                        <pre><code class="hlpython" data-trim data-noescape>
+import kivy
+kivy.require('1.9.1') # replace with your current kivy version !
+
+from kivy.app import <a href="https://kivy.org/docs/api-kivy.app.html">App</a>
+from kivy.uix.label import <a href="https://kivy.org/docs/api-kivy.uix.label.html">Label</a>
+
+class MyApp(App):
+    def build(self):
+        return Label(text='Hello world')
+
+if __name__ == '__main__':
+    MyApp().run()
+                        </code></pre>
+                        <p>Descargar el fichero y llamarlo <a href="kivy/paso1.py">paso1.py</a></p>
+                        <p>Ejecutarlo con <code>python paso1.py</code></p>
+                    </section>
+                    <section>
+                        <h3>Kivy - Segundo paso</h3>
+                        <p>Descargar <a href="kivy/paso2a.py">paso2a.py</a></p>
+                        <ul>
+                            <li>Usamos un <a href="https://kivy.org/docs/api-kivy.uix.gridlayout.html">GridLayout</a> para organizar <a href="https://kivy.org/docs/api-kivy.uix.button.html">Button</a>s en una cuadrícula de 3x3.</li>
+                            <li>Con la función <a href="https://kivy.org/docs/api-kivy.uix.widget.html#kivy.uix.widget.Widget.add_widget">add_widget</a> agregamos botones en el padre</li>
+                            <li>Los botones podemos configurarlos en el constructor, o bien una vez construidos</li>
+                            <li>Hemos definido un <a href="https://kivy.org/docs/api-kivy.event.html">evento</a> usando la propiedad on_press</li>
+                            <li>Ejecutarlo con <code>python paso2a.py</code></li>
+                        </ul>
+                        <p>Vemos que escribir la interfaz en python se complica fácilmente.</p>
+                        <p>Aunque en <a href="kivy/paso2b.py">paso2b.py</a> vemos una ventaja de python para hacer interfaces monótonas (poder usar bucles!)</p>
+                    </section>
+                    <section>
+                        <h3>Kivy - Tercer paso</h3>
+                        <p>Descargar <a href="kivy/paso3.kv">paso3.kv</a> y <a href="kivy/paso3.py">paso3.py</a></p>
+                        <ul>
+                            <li>Interfaz en fichero aparte, escrito en <a href="https://kivy.org/docs/guide/lang.html">Lenguaje KV</a> que tiene una sintaxis parecida a <a href="https://es.wikipedia.org/wiki/YAML">YAML</a></li>
+                            <li>En el fichero kv definimos las clases gráficas que necesitemos. Los nombres &lt;EntreAngulos&gt; son nuestros, el resto de kivy.</li>
+                            <li>En el fichero py definimos las clases que necesitemos para eventos. Debe coincidir el nombre con el &lt;EntreAngulos&gt; del kv.</li>
+                            <li>El nombre de la aplicación <strong>LoqueseaApp</strong> predetermina el nombre del fichero KV <strong>loquesea.kv</strong></li>
+                            <li>Ejecutarlo con <code>python paso3.py</code></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Kivy - Cuarto paso</h3>
+                        <p>Descargar <a href="kivy/paso4.kv">paso4.kv</a> y <a href="kivy/paso4.py">paso4.py</a></p>
+                        <ul>
+                            <li>Maquetando una interfaz más compleja con varios GridLayouts y un reproductor de <a href="https://kivy.org/docs/api-kivy.uix.video.html">Video</a></li>
+                            <li>Vemos que toda la complejidad de la interfaz se queda en el KV y el código python nos queda bastante limpio</li>
+                            <li>El lenguaje KV permite ejecutar one-liners de python para las propiedades, lo que evita tener que escribir métodos triviales en el .py</li>
+                            <li>Ejecutarlo con <code>python paso4.py</code></li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h3>RPi + Kivy: Demo time ;-)</h3>
+                    <img style="height: 500px" data-src="interfaces/demofail.gif">
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                width: "100%",
+                height: "100%",
+                margin: 0,
+                transition: "fade",
+                center: false,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

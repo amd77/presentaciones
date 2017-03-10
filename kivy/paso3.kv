@@ -1,0 +1,34 @@
+# paso3.kv
+<ButtonsGrid>:
+    cols: 3
+    rows: 3
+    Button:
+        id: btn00
+        text: '0,0'
+    Button:
+        id: btnUp
+        text: 'Click Me!!'
+        bold: True
+        background_color: [255, 0, 0, 1]
+        on_press: root.clicked(btnUp)
+    Button:
+        id: btn02
+        text: '0,2'
+    Button:
+        id: btn10
+        text: '1,0'
+    Button:
+        id: btn11
+        text: '1,1'
+    Button:
+        id: btn12
+        text: '1,2'
+    Button:
+        id: btn20
+        text: '2,0'
+    Button:
+        id: btn21
+        text: '2,1'
+    Button:
+        id: btn22
+        text: '2,2'
