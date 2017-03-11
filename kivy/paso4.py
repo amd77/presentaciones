@@ -23,7 +23,7 @@ class ButtonsGrid(GridLayout):
 
 class ContainerBox(BoxLayout):
     def video_loaded(self):
-        self.parent.ids.status_bar.text = 'Video Loaded'
+        self.ids.status_bar.text = 'Video Loaded'
 
 
 class Paso4App(App):  # por defecto se busca un paso4.kv
